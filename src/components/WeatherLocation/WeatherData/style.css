@@ -1,0 +1,23 @@
+body{
+   background-image: url('./../../../images/fondo.jpg');
+   background-size: cover;
+}
+
+
+.weatherDataCont {
+    background-color: gray;
+    text-align: center;
+    width: 30%;
+    font-size: 2em;
+    margin-left: 14em;
+    box-shadow:20px 20px 50px 15px rgb(127, 193, 219);
+    
+
+}
+
+.city{
+    color: rgb(54, 53, 53);
+    text-align: center;
+    font-size: 2em;
+}
+
