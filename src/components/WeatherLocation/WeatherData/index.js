@@ -1,15 +1,25 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import WeatherTemperature from './WeatherTemperature';
 import WeatherExtraInfo from './WeatherExtraInfo';
-import { CLOUD, CLOUDY, SUN, RAIN, SNOW } from './../../../constant/weather';
 import './style.css'
+//Para hacerlo dinamico incluimos la variable data como un objeto, donde iran las variables individuales.
+const WeatherData = ({data}) => {
+const {temperature,weatherState,humidity, wind} = data;
 
-const WeatherData = () => (
+return (
     <div className='weatherDataCont'>  
-        <WeatherTemperature temperature={24} weatherState={SUN}></WeatherTemperature>
-        <WeatherExtraInfo humidity={80} wind={'3m/s'}></WeatherExtraInfo>
+        <WeatherTemperature temperature={temperature} weatherState={weatherState}></WeatherTemperature>
+        <WeatherExtraInfo humidity={humidity} wind={wind}></WeatherExtraInfo>
     </div>
 )
-
+} //Validando objetos
+WeatherData.propTypes = {
+      data:  PropTypes.shape({
+      temperature: PropTypes.number.isRequired,
+      weatherState: PropTypes.string.isRequired,
+      humidity: PropTypes.number.isRequired,
+      wind: PropTypes.string.isRequired
+  }),
+};
 export default WeatherData;
