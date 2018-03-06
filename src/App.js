@@ -12,14 +12,17 @@ const cities = [
 
 
 class App extends Component {
-  render() {
+   hadlerSelectionLocation = city =>{
+    console.log('hadlerSelectionLocationClick')
+  }
+
+  render () {
     return (
       <MuiThemeProvider>
       <div className="App">
-          <LocationList cities={cities}></LocationList>   
+          <LocationList cities={cities} onSelectedLocation ={this.hadlerSelectionLocation}></LocationList>   
       </div>
       </MuiThemeProvider>
-      
     );
   }
 }

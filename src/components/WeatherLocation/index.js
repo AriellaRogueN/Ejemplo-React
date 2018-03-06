@@ -106,10 +106,10 @@ getWeatherState = weather =>{
     } */
 
     render = () => {
-        console.log('render');
+        const {onWeatherLocationClick} = this.props;
         const {city,data} = this.state;     //refactorizamos, es lo mismo que this.state.data o this.state.city
         return(
-            <div className= 'weaterLocation'>
+            <div className= 'weaterLocation' onClick={onWeatherLocationClick}>
                 <Location city={city}></Location>  
                 {data ? <WeatherData data={data}></WeatherData> : <CircularProgress size={60} thickness={7}/>}
             </div>
@@ -120,6 +120,7 @@ getWeatherState = weather =>{
 } 
 WeatherLocation.protTypes ={
     city: Proptypes.string.isRequired,
+    onWeatherLocationClick: Proptypes.func,  //Esto es para validar una funcion
 }
 
 export default WeatherLocation;

@@ -2,15 +2,30 @@ import React from 'react';
 import Proptypes from 'prop-types'
 import WeatherLocation from './WeatherLocation';
 //Modificamos para pasar ciudades
-const strToComponent =  cities => (
-    cities.map(city => (<WeatherLocation city={city}/>))
-)          //pasamos cities a weatherlocation
+        /*pasamos cities a weatherlocation-Asociar ciudad con una key, 
+             key especifica para cada ciudad, para que se escriba solo esa ciudad */
 
-const LocationList = ({cities}) => (
+const LocationList = ({cities, onSelectedLocation}) =>  {
+    const hadlerWeatherLocationClick = city => {
+        console.log('hadlerWeatherLocationClick')
+        onSelectedLocation(city);
+    }
+
+
+    const strToComponent = cities => (
+    cities.map(city => (<WeatherLocation key={city} city={city}
+        onWeatherLocationClick={() =>
+               hadlerWeatherLocationClick(city)}/>))
+)   
+return(
     <div>
         {strToComponent(cities)}
     </div>
+
 )
+
+};
+
 
 /*const LocationList = (cities) => (
     <div>
