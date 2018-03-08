@@ -109,7 +109,7 @@ getWeatherState = weather =>{
         const {onWeatherLocationClick} = this.props;
         const {city,data} = this.state;     //refactorizamos, es lo mismo que this.state.data o this.state.city
         return(
-            <div className= 'weaterLocation' onClick={onWeatherLocationClick}>
+            <div className= 'weatherLocation' onClick={onWeatherLocationClick}>
                 <Location city={city}></Location>  
                 {data ? <WeatherData data={data}></WeatherData> : <CircularProgress size={60} thickness={7}/>}
             </div>

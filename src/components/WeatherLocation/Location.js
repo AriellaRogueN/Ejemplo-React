@@ -12,7 +12,7 @@ const Location = ({city}) =>(    //sin return
     //const city = props.city;
     //const{city} = props;
       //return (
-          <div className='city'>
+          <div className='locationCont'>
               <h1>
                 {city}
               </h1>
