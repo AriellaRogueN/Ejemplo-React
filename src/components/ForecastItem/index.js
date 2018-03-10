@@ -13,10 +13,10 @@ const data ={
 
 
 const forecastItem = ({weekDay,hour,data}) => (
-    <div>
+    <div className='forecastItem' >
       <div>
         {weekDay}
-          Hora:  {hour} hr
+         -  {hour} hr
       </div>
       <WeatherData data={data}/>
     </div>

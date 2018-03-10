@@ -8,6 +8,7 @@
     box-shadow: border-box;
     width: calc(100% - 20px);
     min-width: 430px;
+    
 }
 
 .locationCont {
@@ -19,4 +20,6 @@
     margin: 0;
 }
 
-
+.forecastItem{
+    background-color: teal;
+}

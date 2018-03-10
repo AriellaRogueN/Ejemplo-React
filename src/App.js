@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import {connect} from'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import LocationList from './components/LocationList';  //reemplazo WeatherLocation
 import ForecastExtended from './components/ForecastExtended';
+import {setCity} from './actions'
 import './App.css';
 
 
@@ -15,8 +17,15 @@ const cities = [
   'Ciudad de México,mx',
 ]
 
+//PRIMERA PARTE DE STORE REDUX
 
-class App extends Component {
+//const store = createStore (()=>{})   //configurarlo para agregar browser
+
+
+
+  
+  
+  class App extends Component {
   constructor(){
     super()
     this.state = {
@@ -26,7 +35,11 @@ class App extends Component {
 
    hadlerSelectionLocation = city =>{
      this.setState({city});
-    console.log(`hadlerSelectionLocationClick ${city}`)
+    console.log(`hadlerSelectionLocationClick ${city}`);
+    //const action = {type:'setState', value: city}
+    //store.dispatch(setCity(city));
+
+    this.props.setCity(city);
   }
 
   render () {
@@ -68,5 +81,13 @@ class App extends Component {
     );
   }
 }
+//const mapDispatchToPropsActions = () => {};
+//const componentConnected = connect(null,mapDispatchToPropsActions)(App)
 
-export default App;
+const mapDispatchToPropsActions = dispatch => ({
+  setCity: value => dispatch(setCity(value))
+})
+
+const AppConnected = connect(null, mapDispatchToPropsActions)(App)
+
+export default AppConnected;

@@ -26,14 +26,28 @@ class ForecastExtended extends Component{
      }
 
      componentDidMount(){
-         const url_forecast = `${url}?q=${this.props.city}&appid=${api_key}&units=metric`;
-         
+         this.updateCity(this.props.city);
+         }
+
+    componentWillReceiveProps(nextProps){   //si la proxima ciudad es distin ta a la anterior que la recargue
+         if(nextProps.city !== this.props.city) {
+             this.setState({ forecastData: null });
+             this.updateCity(nextProps.city);
+        }
+            
+    }
+
+
+
+     updateCity = city => {
+         const url_forecast = `${url}?q=${city}&appid=${api_key}&units=metric`;
+
          fetch(url_forecast).then(data => (data.json())
-        ).then(weather_data => {
-            console.log(weather_data);
-            const forecastData=transformForecast(weather_data);
-            this.setState ({forecastData})
-        })
+         ).then(weather_data => {
+             console.log(weather_data);
+             const forecastData = transformForecast(weather_data);
+             this.setState({ forecastData })
+         })
      }
 
     renderForecastItemDays (forecastData) {
@@ -66,3 +80,7 @@ class ForecastExtended extends Component{
 
 
 export default ForecastExtended;
+
+
+
+/*  */
