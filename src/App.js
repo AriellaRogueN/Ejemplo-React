@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {connect} from'react-redux';
+//import {connect} from'react-redux';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
-import LocationList from './components/LocationList';  //reemplazo WeatherLocation
-import ForecastExtended from './components/ForecastExtended';
-import {setCity} from './actions'
+import LocationListContainer from './containers/LocationListContainer';  //reemplazo WeatherLocation//reemplazo LocationList
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
+//import {setCity} from './actions'
 import './App.css';
 
 
@@ -26,24 +27,24 @@ const cities = [
   
   
   class App extends Component {
-  constructor(){
+  /*constructor(){
     super()
     this.state = {
       city:null
   }
-};
+}; */
 
-   hadlerSelectionLocation = city =>{
+   /*hadlerSelectionLocation = city =>{
      this.setState({city});
     console.log(`hadlerSelectionLocationClick ${city}`);
     //const action = {type:'setState', value: city}
     //store.dispatch(setCity(city));
 
     this.props.setCity(city);
-  }
+  } */  //Manejaba estado antes de hacerelo con redux
 
   render () {
-    const {city} = this.state;
+    //const {city} = this.state;    redux  
 
     return (
      <MuiThemeProvider>
@@ -55,16 +56,14 @@ const cities = [
           </Row>
           <Row>
             <Col xs={12} md={6}>
-              <LocationList cities={cities} onSelectedLocation={this.hadlerSelectionLocation}></LocationList>
+              <LocationListContainer cities={cities}>   
+              </LocationListContainer>
             </Col>
             <Col xs={12} md={6}>
              <Paper zDepth>
                <div className="detail">
-                 
-                 {
-                   city === null ? <h1>No se seleccionó Ciudad  
-                     </h1> : <ForecastExtended city={city} />
-                 }
+                  <ForecastExtendedContainer>
+                  </ForecastExtendedContainer>
                 </div>
              </Paper>
             </Col>
@@ -84,10 +83,11 @@ const cities = [
 //const mapDispatchToPropsActions = () => {};
 //const componentConnected = connect(null,mapDispatchToPropsActions)(App)
 
-const mapDispatchToPropsActions = dispatch => ({
+
+/*const mapDispatchToPropsActions = dispatch => ({
   setCity: value => dispatch(setCity(value))
 })
 
-const AppConnected = connect(null, mapDispatchToPropsActions)(App)
+ export default connect(null, mapDispatchToPropsActions)(App) */ //Locambiamos a locationlistcontainer
 
-export default AppConnected;
+export default App;
